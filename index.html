@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>glungus</title>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      overflow: hidden;
+    }
+    .glungus-container {
+      position: relative;
+      height: 40vh;
+      transform-origin: top center;
+      animation: swing 2s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .glungus-cat {
+      height: 100%;
+      object-fit: contain;
+      animation: scale 2s ease-in-out infinite alternate;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+    @keyframes swing {
+      0% { transform: rotate(-35deg) translateZ(0); }
+      100% { transform: rotate(35deg) translateZ(0); }
+    }
+    @keyframes scale {
+      0% { transform: scale(0.4) translateZ(0); }
+      100% { transform: scale(1.4) translateZ(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="glungus-container">
+    <img src="glungus.png" alt="Glungus" class="glungus-cat">
+  </div>
+</body>
+</html>

